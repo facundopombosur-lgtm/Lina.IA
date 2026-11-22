@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico inicial · lina.ia</title>
+<meta name="theme-color" content="#121826">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#121826;color:#F3F5F9;font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;color:#fff}
+a{color:#8FA8FF}
+@keyframes gridmove{from{background-position:0 0,0 0}to{background-position:48px 48px,48px 48px}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
+@keyframes qin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(143,168,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(143,168,255,.07) 1px,transparent 1px);background-size:48px 48px;animation:gridmove 6s linear infinite;-webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 20%,#000 15%,transparent 70%);pointer-events:none;z-index:0}
+.sway{transform-box:view-box;transform-origin:160px 170px;animation:sway 5s ease-in-out infinite}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+.wrap{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.top{position:sticky;top:0;z-index:10;background:rgba(18,24,38,.94);backdrop-filter:blur(10px);border-bottom:1px solid #2A3347}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo b{font-family:'Space Grotesk',sans-serif;font-size:22px;color:#fff;letter-spacing:-.5px}.logo b span{color:#8FA8FF}
+.pct{font-family:'JetBrains Mono',monospace;font-size:13px;color:#B4B9C4}
+.prog{height:4px;background:#1C2436}.prog i{display:block;height:100%;width:0;background:#A78BFA;box-shadow:0 0 14px #A78BFA;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+nav.pasos{overflow-x:auto;white-space:nowrap;padding:10px 14px;scrollbar-width:none}
+nav.pasos::-webkit-scrollbar{display:none}
+nav.pasos button{display:inline-block;margin-right:6px;border-radius:999px;background:#1C2436;color:#B4B9C4;border:1px solid #2A3347;font:500 13px Inter,sans-serif;padding:8px 12px;min-height:36px;cursor:pointer;transition:all .2s}
+nav.pasos button.on{background:#7C3AED;border-color:#7C3AED;color:#fff;box-shadow:0 0 18px rgba(124,58,237,.45)}
+nav.pasos button.ok{color:#fff;border-color:#8FA8FF}
+header.hero{padding:44px 20px 20px}
+.tag{color:#A78BFA;font-size:13px;font-weight:600;letter-spacing:1px}
+header.hero h1{font-size:clamp(34px,6vw,54px);line-height:1.05;letter-spacing:-1px;margin:14px 0}
+header.hero p{color:#B4B9C4;margin:0 0 12px;font-size:17px}
+.aviso{background:#1C2436;border:1px solid #2A3347;border-radius:14px;padding:14px 16px;color:#D6D9E0;font-size:15px;margin-top:16px}
+.aviso strong{color:#A78BFA}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.chip{background:#1C2436;border:1px solid #2A3347;padding:8px 14px;border-radius:999px;font-size:14px}
+main{padding:10px 16px 140px}
+section.bloque{display:none;background:#1C2436;border:1px solid #2A3347;border-radius:24px;padding:26px 20px;margin-top:14px}
+section.bloque.on{display:block;animation:qin .45s cubic-bezier(.2,.8,.2,1) both}
+section.bloque h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.6px;display:flex;align-items:center;gap:12px}
+.num{display:inline-flex;flex:none;width:40px;height:40px;border-radius:12px;background:#7C3AED;color:#fff;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 22px rgba(124,58,237,.5)}
+.intro{color:#B4B9C4;margin:10px 0 6px;font-size:15px}
+label{display:block;font-weight:600;margin:20px 0 8px;font-size:15px;color:#fff}
+.ayuda{display:block;font-weight:400;color:#8C93A3;font-size:14px;margin-top:3px}
+input[type=text],input[type=number],textarea,select{width:100%;padding:14px 16px;border:1.5px solid #2A3347;border-radius:14px;font:inherit;background:#0D121D;color:#fff;transition:border-color .2s,box-shadow .2s}
+textarea{min-height:110px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#6B7280}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#A78BFA;box-shadow:0 0 0 4px rgba(167,139,250,.2)}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.fila{grid-template-columns:1fr}}
+.checks,.radios{display:flex;flex-wrap:wrap;gap:8px}
+.checks label,.radios label{display:inline-flex;align-items:center;gap:8px;margin:0;font-weight:500;background:#0D121D;border:1.5px solid #2A3347;padding:10px 14px;border-radius:12px;cursor:pointer;min-height:44px;transition:all .2s}
+.checks label:hover,.radios label:hover{border-color:#8FA8FF}
+.checks label:has(input:checked),.radios label:has(input:checked){background:#2A2150;border-color:#A78BFA;box-shadow:0 0 16px rgba(167,139,250,.3)}
+.checks input,.radios input{accent-color:#A78BFA}
+fieldset{border:none;margin:0;padding:6px 0 4px}
+legend{font-weight:600;padding:18px 0 8px;color:#fff}
+.proceso{border:1px solid #2A3347;border-radius:18px;padding:18px;margin-top:16px;background:#121826;animation:rise .4s ease-out both}
+.proceso h3{font-size:18px;display:flex;justify-content:space-between;align-items:center;gap:8px;color:#8FA8FF}
+button{font:inherit;cursor:pointer;border:none;border-radius:14px;min-height:44px;padding:12px 20px;font-weight:600;transition:transform .15s}
+button:hover{transform:translateY(-2px)}
+.btn-sec{background:#2A2150;color:#E9E3FF;border:1px solid #7C3AED;margin-top:14px}
+.btn-quitar{background:transparent;color:#F87171;font-size:14px;padding:6px 10px;min-height:36px}
+.btn-pri{background:#7C3AED;color:#fff;box-shadow:0 0 24px rgba(124,58,237,.45)}
+.btn-out{background:transparent;color:#F3F5F9;border:1.5px solid #2A3347}
+.cita{background:#2A2150;border:1px solid #7C3AED;border-radius:14px;padding:14px 16px;font-size:15px;color:#E9E3FF;margin:22px 0 4px}
+.navbtns{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+.final{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.estado{font-size:15px;color:#4ADE80;min-height:22px}
+.precio{background:#121826;border:1.5px solid #7C3AED;border-radius:18px;padding:18px;margin-top:16px;box-shadow:0 0 28px rgba(124,58,237,.25)}
+.precio b{font-family:'Space Grotesk',sans-serif;font-size:30px;color:#fff}
+footer{text-align:center;color:#8C93A3;font-size:14px;padding:10px 16px 40px;position:relative;z-index:1}
+.oculto{display:none}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="top">
+<div class="wrap topbar">
+<a class="logo" href="./"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#1C2436"/><g transform="translate(4 4) scale(0.12)"><path fill="#fff" d="M120 130 Q56 64 0 110 Q60 94 120 130 Z"/><path fill="#fff" d="M120 130 Q92 30 32 16 Q80 72 120 130 Z"/><path fill="#A78BFA" d="M120 130 Q156 30 216 20 Q160 72 120 130 Z"/><path fill="#fff" d="M120 130 Q192 70 244 112 Q180 94 120 130 Z"/><path fill="#fff" d="M106 260 Q100 196 112 136 L130 138 Q120 200 128 260 Z"/><circle fill="#8FA8FF" cx="120" cy="130" r="24"/></g></svg><b>lina<span>.ia</span></b></a>
+<span class="pct" id="pct">0% completo</span>
+</div>
+<div class="prog" aria-hidden="true"><i id="barra"></i></div>
+<nav class="pasos wrap" aria-label="Secciones" id="menu"></nav>
+</div>
+<header class="hero wrap">
+<svg width="96" height="96" viewBox="20 40 280 270" aria-hidden="true"><g class="sway"><path fill="#fff" d="M160 170 Q96 104 40 150 Q100 134 160 170 Z"/><path fill="#fff" d="M160 170 Q132 70 72 56 Q120 112 160 170 Z"/><path fill="#A78BFA" d="M160 170 Q196 70 256 60 Q200 112 160 170 Z"/><path fill="#fff" d="M160 170 Q232 110 284 152 Q220 134 160 170 Z"/></g><path fill="#fff" d="M146 300 Q140 236 152 176 L170 178 Q160 240 168 300 Z"/><circle class="pulse" fill="#8FA8FF" cx="160" cy="170" r="24"/><circle fill="#8FA8FF" cx="160" cy="170" r="24"/></svg>
+<div class="tag" id="para">DIAGNÓSTICO INICIAL</div>
+<h1 id="titulo">Diagnóstico inicial de tu negocio</h1>
+<p>Este cuestionario es el primer paso del diagnóstico. Con tus respuestas vamos a dibujar el mapa completo de cómo funciona hoy tu negocio: quién hace qué, en qué orden, con qué herramientas y dónde se traba.</p>
+<p>Tomate tu tiempo: cuanto más detalle nos des, más preciso va a ser el mapa. Lo que escribís se guarda solo en este dispositivo, así que podés hacerlo en partes.</p>
+<div class="chips"><span class="chip">Entre 40 y 60 minutos</span><span class="chip">Completarlo no tiene costo</span><span class="chip">Se guarda solo</span></div>
+<div class="aviso"><strong>Importante:</strong> no escribas contraseñas, números de tarjeta ni datos personales de tus clientes. Nombrá a las personas por su puesto (por ejemplo "encargada", "vendedor"), no por su nombre. Si no sabés algo, dejalo en blanco o poné "no sé": no hay respuestas incorrectas.</div>
+</header>
+<main class="wrap">
+<form id="f" onsubmit="return false">
+<div id="secciones"></div>
+<section class="bloque" id="enviar" data-sec="enviar">
+<h2><span class="num">✓</span>Enviar respuestas</h2>
+<p class="intro">Gracias por el tiempo. Tocá «Enviar mis respuestas» y nos llegan directo. Con eso dibujamos el mapa de tu negocio y lo presentamos juntos en una reunión.</p>
+<div class="precio"><div class="tag">DEVOLUCIÓN COMPLETA</div><p class="intro" style="margin:6px 0 8px">Reunión cara a cara con el mapa de tu negocio y las opciones de mejora, con el tiempo que te ahorra cada una.</p><b>$50.000</b> <span style="color:#B4B9C4;font-size:14px">ARS</span></div>
+<div class="final">
+<button type="button" class="btn-pri" onclick="compartir()">Enviar mis respuestas →</button>
+<button type="button" class="btn-out" onclick="descargar()">Descargar el archivo (por si no hay internet)</button>
+<a class="btn-out" id="wa" href="https://wa.me/5491173685640" target="_blank" rel="noopener" style="text-decoration:none;text-align:center;border-radius:14px;padding:12px 20px;font-weight:600">Avisar por WhatsApp</a>
+<span class="estado" id="estado" role="status"></span>
+</div>
+<div class="navbtns"><button type="button" class="btn-out" onclick="ir(idx-1)">← Anterior</button></div>
+</section>
+</form>
+</main>
+<footer>Diagnóstico preparado por <b>lina.ia</b> · El Bolsón, Patagonia</footer>
+<script>
+var T="textarea",X="text",N="number",R="radio";
+var FREC=["Varias veces por día","Una vez por día","Algunas veces por semana","Una vez por semana","Una vez por mes","Menos seguido","No sé"];
+var SN=["Sí","No","A veces","No sé"];
+var SECS=[
+{id:"negocio",t:"Tu negocio",i:"Lo básico para ubicarnos.",q:[
+["nombre","Nombre del negocio",X],["rubro","¿A qué se dedican?",X,"Ej: ferretería, club, cabañas, estudio contable"],["localidad","Localidad",X],
+["antiguedad","¿Hace cuántos años funciona?",X],["personas","¿Cuántas personas trabajan, contándote?",N],
+["rol","¿Cuál es tu puesto?",X,"Si responden dos personas, cada una manda el suyo: así vemos el negocio desde dos lugares."],
+["contacto","WhatsApp o mail para coordinar la devolución",X],
+["que_venden","¿Qué venden o qué servicio dan? Contalo como se lo contarías a alguien que no te conoce",T],
+["clientes","¿Quiénes son sus clientes? ¿Particulares, empresas, turistas, socios?",T],
+["temporada","¿El trabajo cambia según la época del año? ¿Cuándo es la temporada fuerte y cuándo la floja?",T]]},
+{id:"dia",t:"Un día normal",i:"Antes de entrar en detalle, queremos ver el negocio en movimiento.",q:[
+["dia_tipico","Contanos un día normal de trabajo, desde que abren hasta que cierran. ¿Qué pasa primero, qué después?",T,"No hace falta que sea prolijo: escribí como te salga."],
+["semana","¿Qué cosas se hacen una vez por semana o una vez por mes (cierres, pedidos, pagos, reuniones)?",T],
+["urgencias","¿Qué es lo que más seguido se convierte en urgencia o en \"apagar incendios\"?",T]]},
+{id:"equipo",t:"El equipo",i:"Quién hace qué. Nombrá a las personas por su puesto, no por su nombre.",roles:true,q:[
+["decide","¿Quién toma las decisiones importantes (precios, compras, contrataciones)?",X],
+["dependencia","Si una persona clave falta una semana, ¿qué se frena? ¿Quién sabe hacer lo que hace esa persona?",T],
+["dueno_hace","¿Qué tareas hacés vos (o el dueño) que te gustaría que hiciera otra persona?",T]]},
+{id:"herramientas",t:"Herramientas e información",i:"Con qué trabajan y dónde vive la información del negocio.",herr:true,q:[
+["papel","¿Qué se sigue haciendo en papel, cuaderno o de memoria?",T],
+["donde_info","Si necesitás saber cuánto vendiste el mes pasado, ¿dónde lo buscás y cuánto tardás en tenerlo?",T],
+["duplicado","¿Hay información que se anota dos veces en lugares distintos (por ejemplo en el cuaderno y después en la compu)?",T],
+["info_falta","¿Qué información te gustaría tener a mano y hoy no tenés?",T]]},
+{id:"marketing",t:"Marketing",i:"Cómo los conoce la gente y cómo llegan las consultas.",area:true,q:[
+["como_llegan","¿Cómo los conoce la gente? Ordená de más a menos importante (boca en boca, redes, Google, cartel, recomendaciones…)",T],
+["redes_quien","¿Quién se ocupa de las redes y cada cuánto publican?",T],
+["consultas_semana","Más o menos, ¿cuántas consultas reciben por semana?",X],
+["consultas_canal","¿Por dónde llegan las consultas (WhatsApp, Instagram, teléfono, en persona, mail)?",T],
+["sabe_origen","¿Saben de dónde vino cada cliente nuevo?",R,SN]]},
+{id:"ventas",t:"Ventas",i:"Desde que alguien consulta hasta que compra, reserva o se asocia.",area:true,q:[
+["recorrido","Contanos el camino de una consulta típica: llega el mensaje, ¿y después qué pasa, paso a paso, hasta que la persona compra?",T],
+["tiempo_respuesta","¿Cuánto tardan en responder una consulta, normalmente? ¿Y en el peor caso?",T],
+["fuera_horario","¿Qué pasa con las consultas que llegan de noche, el fin de semana o cuando están ocupados?",T],
+["presupuestos","¿Hacen presupuestos? ¿Cómo los arman y cuánto tardan?",T],
+["seguimiento","Si alguien consulta y no compra, ¿le vuelven a escribir? ¿Quién y cuándo?",T],
+["perdidas","¿De cada 10 consultas, cuántas terminan en venta? ¿Por qué creés que se pierden las otras?",T],
+["cobro","¿Cómo cobran (efectivo, transferencia, Mercado Pago, cuenta corriente)?",T]]},
+{id:"entrega",t:"Entrega y servicio",i:"Cómo hacen o entregan lo que venden, y qué pasa después.",area:true,q:[
+["como_entregan","Una vez que alguien compró, ¿qué pasos siguen hasta que recibe lo que pagó?",T],
+["coordinacion","¿Cómo se coordinan entre ustedes (WhatsApp, pizarra, de palabra)? ¿Se pierden cosas en el camino?",T],
+["errores","¿Qué errores se repiten (pedidos mal anotados, fechas cruzadas, faltantes)?",T],
+["reclamos","¿Cómo reciben y resuelven un reclamo o una consulta después de la venta?",T],
+["vuelven","¿Los clientes vuelven a comprar? ¿Hacen algo para que vuelvan?",T]]},
+{id:"administracion",t:"Administración",i:"Cobros, pagos, facturas, stock y papeles.",area:true,q:[
+["facturacion","¿Cómo y cuándo facturan? ¿Quién lo hace?",T],
+["cobranzas","¿Hay clientes que pagan tarde? ¿Cómo los siguen?",T],
+["stock","¿Manejan stock o insumos? ¿Cómo saben qué falta y cuándo pedir?",T],
+["proveedores","¿Cómo hacen los pedidos y los pagos a proveedores?",T],
+["numeros","¿Cómo saben si el mes fue bueno o malo? ¿Cada cuánto miran los números?",T],
+["horas_admin","¿Cuántas horas por semana se van en tareas administrativas?",X]]},
+{id:"seguridad",t:"Seguridad de la información",i:"Preguntas simples sobre cómo cuidan las cuentas y los datos del negocio. Respondé con lo que sepas.",seg:true},
+{id:"mirada",t:"Tu mirada",i:"Las últimas preguntas son para pensar con calma.",q:[
+["repetitivo","¿Cuántas horas por semana calculás que se van en tareas que se repiten siempre igual?",X],
+["duplicar","Si mañana tuvieran el doble de clientes, ¿qué sería lo primero que se rompe?",T],
+["tiempo_perdido","¿Qué es lo que más tiempo les hace perder hoy?",T],
+["no_cambiar","¿Hay algo de cómo trabajan que funciona muy bien y no querés tocar?",T],
+["un_ano","Si dentro de un año el negocio funcionara como te gustaría, ¿qué sería distinto?",T],
+["comentarios","¿Algo más que te parezca importante que sepamos?",T]]}];
+var HERR=["WhatsApp","WhatsApp Business","Instagram","Facebook","TikTok","Página web","Google (perfil de empresa)","Gmail u otro mail","Excel o Google Sheets","Google Drive","Mercado Pago","Mercado Libre","Sistema de facturación","Sistema de stock o gestión","Agenda o calendario","Cuaderno o papel"];
+var SEG=[["contrasenas_compartidas","¿Varias personas usan la misma contraseña para entrar a algo (mail, redes, banco)?"],["donde_contrasenas","¿Las contraseñas están anotadas en un papel, en el celular a la vista o en un chat?"],["dos_pasos","¿Tienen activada la verificación en dos pasos (un código que llega al celular) en el mail, las redes y el banco?"],["copias","¿Hacen copias de seguridad de la información importante?"],["accesos_quien","¿Saben exactamente quién tiene acceso a cada cuenta del negocio?"],["bajas","Cuando alguien deja de trabajar con ustedes, ¿le sacan los accesos?"],["personales","¿Usan celulares o computadoras personales para trabajar?"],["datos_clientes","¿Guardan datos de clientes (teléfonos, direcciones, DNI)?"],["actualizaciones","¿Mantienen actualizados los celulares y las computadoras?"],["incidente","¿Alguna vez les hackearon una cuenta o perdieron información?"]];
+var NETLIFY_FORM="https://lina-ia-diagnostico.netlify.app/";
+function el(h){var d=document.createElement("div");d.innerHTML=h.trim();return d.firstChild}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var cnt=0;
+function campo(sec,q){var k=sec+"."+q[0],id="c_"+sec+"_"+q[0],ay=q[3]&&!Array.isArray(q[3])?'<span class="ayuda">'+q[3]+'</span>':"";
+if(q[2]===R){return'<fieldset><legend>'+q[1]+'</legend><div class="radios">'+q[3].map(function(o){return'<label><input type="radio" name="'+k+'" value="'+o+'"> '+o+'</label>'}).join("")+'</div></fieldset>'}
+var inp=q[2]===T?'<textarea id="'+id+'" name="'+k+'"></textarea>':'<input type="'+(q[2]===N?"number":"text")+'" id="'+id+'" name="'+k+'"'+(q[2]===N?' min="0"':'')+'>';
+return'<label for="'+id+'">'+q[1]+ay+'</label>'+inp}
+function agregarRol(v){v=v||{};var i=++cnt;document.getElementById("roles").appendChild(el('<div class="proceso" data-rol><h3>Puesto<button type="button" class="btn-quitar" onclick="this.closest(\'[data-rol]\').remove();guardar()">Quitar</button></h3><div class="fila"><div><label for="r'+i+'a">Nombre del puesto</label><input type="text" id="r'+i+'a" data-k="rol" placeholder="Ej: encargada" value="'+esc(v.rol)+'"></div><div><label for="r'+i+'b">¿Cuántas personas?</label><input type="number" min="1" id="r'+i+'b" data-k="personas" value="'+esc(v.personas)+'"></div></div><label for="r'+i+'c">¿Qué hace en el día a día?</label><textarea id="r'+i+'c" data-k="tareas">'+esc(v.tareas)+'</textarea><label for="r'+i+'d">¿Con qué herramientas trabaja?</label><input type="text" id="r'+i+'d" data-k="herramientas" value="'+esc(v.herramientas)+'"></div>'))}
+function agregarProceso(area,v){v=v||{};var i=++cnt;var fr=FREC.map(function(o){return'<option'+(v.frecuencia===o?' selected':'')+'>'+o+'</option>'}).join("");
+document.querySelector('[data-lista="'+area+'"]').appendChild(el('<div class="proceso" data-proc="'+area+'"><h3>Tarea<button type="button" class="btn-quitar" onclick="this.closest(\'[data-proc]\').remove();guardar()">Quitar</button></h3>'+
+'<label for="p'+i+'a">¿Cómo le dicen a esta tarea?</label><input type="text" id="p'+i+'a" data-k="nombre" value="'+esc(v.nombre)+'">'+
+'<label for="p'+i+'h">¿Qué la dispara? ¿Cuándo empieza?<span class="ayuda">Ej: llega un mensaje, es fin de mes, entra un pedido.</span></label><input type="text" id="p'+i+'h" data-k="disparador" value="'+esc(v.disparador)+'">'+
+'<label for="p'+i+'b">¿Quién la hace? Si pasa por varias manos, nombrá todos los puestos en orden.</label><input type="text" id="p'+i+'b" data-k="roles" value="'+esc(v.roles)+'">'+
+'<label for="p'+i+'c">Paso a paso, ¿cómo se hace hoy?<span class="ayuda">Un paso por renglón. Contá también las esperas y los "después le aviso a…".</span></label><textarea id="p'+i+'c" data-k="pasos" placeholder="1. Llega la consulta por WhatsApp&#10;2. ...">'+esc(v.pasos)+'</textarea>'+
+'<label for="p'+i+'d">¿Qué herramientas usan en esta tarea?</label><input type="text" id="p'+i+'d" data-k="herramientas" value="'+esc(v.herramientas)+'">'+
+'<div class="fila"><div><label for="p'+i+'e">¿Cuánto tiempo lleva cada vez?</label><input type="text" id="p'+i+'e" data-k="tiempo_cada_vez" placeholder="Ej: 15 minutos" value="'+esc(v.tiempo_cada_vez)+'"></div><div><label for="p'+i+'f">¿Cada cuánto se hace?</label><select id="p'+i+'f" data-k="frecuencia"><option value="">Elegí</option>'+fr+'</select></div></div>'+
+'<label for="p'+i+'i">¿Cómo saben que quedó bien hecha?</label><input type="text" id="p'+i+'i" data-k="como_termina" value="'+esc(v.como_termina)+'">'+
+'<label for="p'+i+'g">¿Qué se traba, se olvida o sale mal en esta tarea?</label><textarea id="p'+i+'g" data-k="problemas">'+esc(v.problemas)+'</textarea></div>'))}
+var idx=0,TOT=SECS.length+1;
+function armar(){var cont=document.getElementById("secciones"),menu=document.getElementById("menu");
+SECS.forEach(function(s,n){menu.appendChild(el('<button type="button" data-go="'+n+'">'+(n+1)+'. '+s.t+'</button>'));
+var h='<section class="bloque" id="'+s.id+'" data-sec="'+s.id+'"><h2><span class="num">'+(n+1)+'</span>'+s.t+'</h2><p class="intro">'+s.i+'</p>';
+if(s.roles)h+='<div id="roles"></div><button type="button" class="btn-sec" onclick="agregarRol()">+ Agregar puesto</button>';
+if(s.herr)h+='<label>Marcá todo lo que usen hoy</label><div class="checks">'+HERR.map(function(x){return'<label><input type="checkbox" name="herramientas.usadas" value="'+x+'"> '+x+'</label>'}).join("")+'</div>'+campo("herramientas",["otras","Otros sistemas o programas",X]);
+if(s.seg)h+=SEG.map(function(q){return campo("seguridad",[q[0],q[1],R,SN.filter(function(o){return o!=="A veces"})])}).join("");
+(s.q||[]).forEach(function(q){h+=campo(s.id,q)});
+if(s.area)h+='<div class="cita">Ahora elegí las 2 o 3 tareas más importantes de esta área y contanos cada una en detalle. Estas fichas son las que usamos para dibujar el mapa.</div><div data-lista="'+s.id+'"></div><button type="button" class="btn-sec" onclick="agregarProceso(\''+s.id+'\')">+ Agregar tarea</button>';
+h+='<div class="navbtns">'+(n>0?'<button type="button" class="btn-out" onclick="ir('+(n-1)+')">← Anterior</button>':'<span></span>')+'<button type="button" class="btn-pri" onclick="ir('+(n+1)+')">'+(n===SECS.length-1?'Terminar ✓':'Siguiente →')+'</button></div>';
+cont.appendChild(el(h+'</section>'))});
+menu.appendChild(el('<button type="button" data-go="'+SECS.length+'">Enviar</button>'));
+menu.addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(b)ir(+b.getAttribute("data-go"))})}
+function ir(n){if(n<0||n>=TOT)return;idx=n;var all=document.querySelectorAll("section.bloque");all.forEach(function(s,i){s.classList.toggle("on",i===n)});
+document.querySelectorAll("#menu [data-go]").forEach(function(b,i){b.classList.toggle("on",i===n);if(i===n)b.scrollIntoView({block:"nearest",inline:"center"})});
+var top=document.querySelector("main").getBoundingClientRect().top+window.scrollY-130;if(window.scrollY>top||n>0)window.scrollTo({top:Math.max(0,top),behavior:"smooth"});
+try{localStorage.setItem(KEY+"-paso",n)}catch(e){}}
+function setPath(o,p,v){var k=p.split(".");for(var i=0;i<k.length-1;i++){o=o[k[i]]=o[k[i]]||{}}o[k[k.length-1]]=v}
+function datos(){var d={formulario:"diagnostico-inicial-lina-ia",version:3,preparado_por:"lina.ia",cliente_link:CLIENTE,fecha:new Date().toISOString(),equipo_puestos:[],herramientas:{usadas:[]},procesos:{}};
+document.querySelectorAll("#f [name]").forEach(function(x){if(x.type==="checkbox"){if(x.checked)d.herramientas.usadas.push(x.value);return}if(x.type==="radio"){if(x.checked)setPath(d,x.name,x.value);return}setPath(d,x.name,x.value.trim())});
+document.querySelectorAll("[data-rol]").forEach(function(b){var r={};b.querySelectorAll("[data-k]").forEach(function(x){r[x.dataset.k]=x.value.trim()});if(r.rol||r.tareas)d.equipo_puestos.push(r)});
+document.querySelectorAll("[data-lista]").forEach(function(l){var a=l.dataset.lista;d.procesos[a]=[];l.querySelectorAll("[data-proc]").forEach(function(b){var p={};b.querySelectorAll("[data-k]").forEach(function(x){p[x.dataset.k]=x.dataset.k==="pasos"?x.value.split("\n").map(function(s){return s.trim()}).filter(Boolean):x.value.trim()});if(p.nombre||p.pasos.length)d.procesos[a].push(p)})});
+return d}
+var CLIENTE="";try{CLIENTE=(new URLSearchParams(location.search).get("cliente")||"").trim().slice(0,80)}catch(e){}
+var KEY="lina-ia-diagnostico-v3"+(CLIENTE?"-"+CLIENTE.toLowerCase().replace(/[^a-z0-9]+/g,"-"):"");
+if(CLIENTE){document.getElementById("titulo").textContent="Diagnóstico inicial de "+CLIENTE;document.getElementById("para").textContent="PREPARADO POR LINA.IA PARA "+CLIENTE.toUpperCase();document.title="Diagnóstico "+CLIENTE+" · lina.ia"}
+function seccionCompleta(s){var xs=s.querySelectorAll("input[type=text],input[type=number],textarea"),ok=0;xs.forEach(function(x){if(x.value.trim())ok++});return xs.length&&ok/xs.length>=.5}
+function progreso(){var tot=0,ok=0;document.querySelectorAll("#f input[type=text],#f input[type=number],#f textarea").forEach(function(x){tot++;if(x.value.trim())ok++});var p=tot?Math.round(ok/tot*100):0;document.getElementById("barra").style.width=p+"%";document.getElementById("pct").textContent=p+"% completo";
+document.querySelectorAll("section.bloque[data-sec]").forEach(function(s,i){var b=document.querySelector('#menu [data-go="'+i+'"]');if(b&&s.id!=="enviar")b.classList.toggle("ok",!!seccionCompleta(s))})}
+function guardar(){progreso();try{localStorage.setItem(KEY,JSON.stringify(datos()))}catch(e){}}
+function cargar(){var d;try{d=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){d=null}if(!d)return false;
+document.querySelectorAll("#f [name]").forEach(function(x){var v=x.name.split(".").reduce(function(o,k){return o&&o[k]},d);if(x.type==="checkbox"){x.checked=(d.herramientas.usadas||[]).indexOf(x.value)>-1}else if(x.type==="radio"){x.checked=v===x.value}else if(v!=null&&typeof v!=="object"){x.value=v}});
+(d.equipo_puestos||[]).forEach(function(r){agregarRol(r)});
+Object.keys(d.procesos||{}).forEach(function(a){d.procesos[a].forEach(function(p){agregarProceso(a,Object.assign({},p,{pasos:(p.pasos||[]).join("\n")}))})});return true}
+function nombreArchivo(){var n=(document.getElementById("c_negocio_nombre").value||"negocio").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");return"diagnostico-"+n+"-"+new Date().toISOString().slice(0,10)+".json"}
+function archivo(){return new Blob([JSON.stringify(datos(),null,2)],{type:"application/json"})}
+function descargar(){var a=document.createElement("a");a.href=URL.createObjectURL(archivo());a.download=nombreArchivo();document.body.appendChild(a);a.click();a.remove();document.getElementById("estado").textContent="Listo: se descargó "+a.download+". Mandalo por WhatsApp o mail a lina.ia.estudio@gmail.com."}
+function avisoWA(){var d=datos(),ng=d.negocio||{};document.getElementById("wa").href="https://wa.me/5491173685640?text="+encodeURIComponent("Hola lina.ia! Completé el diagnóstico de "+(ng.nombre||CLIENTE||"mi negocio")+(ng.rubro?" ("+ng.rubro+")":"")+". Contacto: "+(ng.contacto||"-"))}
+function compartir(){var est=document.getElementById("estado");est.style.color="#B4B9C4";est.textContent="Enviando…";
+var dd=datos(),ng=dd.negocio||{},body=JSON.stringify(dd);
+fetch(NETLIFY_FORM,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({"form-name":"diagnostico",negocio:ng.nombre||CLIENTE||"",rubro:ng.rubro||"",localidad:ng.localidad||"",quien_responde:(ng.rol||"")+(ng.contacto?" · "+ng.contacto:""),subject:"lina.ia · Nuevo diagnóstico: "+(ng.nombre||CLIENTE||"sin nombre"),respuestas:body}).toString()})
+.then(function(){est.style.color="#4ADE80";est.textContent="¡Listo! Tus respuestas llegaron a lina.ia. Te contactamos para coordinar la reunión.";try{localStorage.setItem(KEY+"-enviado",new Date().toISOString())}catch(e){}})
+.catch(function(){est.style.color="#FBBF24";est.textContent="No se pudo enviar (¿sin internet?). Tocá «Descargar el archivo» y mandalo por WhatsApp.";})}
+armar();cargar();if(CLIENTE&&!document.getElementById("c_negocio_nombre").value)document.getElementById("c_negocio_nombre").value=CLIENTE;if(!document.querySelector("[data-rol]"))agregarRol();["marketing","ventas","entrega","administracion"].forEach(function(a){if(!document.querySelector('[data-proc="'+a+'"]'))agregarProceso(a)});
+var p0=0;try{p0=+(localStorage.getItem(KEY+"-paso")||0)}catch(e){}idx=p0;document.querySelectorAll("section.bloque").forEach(function(s,i){s.classList.toggle("on",i===p0)});document.querySelectorAll("#menu [data-go]").forEach(function(b,i){b.classList.toggle("on",i===p0)});
+progreso();avisoWA();
+document.getElementById("f").addEventListener("input",function(){guardar();avisoWA()});document.getElementById("f").addEventListener("change",guardar);
+</script>
+</body>
+</html>
