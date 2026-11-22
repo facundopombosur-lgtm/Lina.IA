@@ -109,7 +109,7 @@ body.noscroll{overflow:hidden}
 <h1 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(42px, 6.4vw, 76px); line-height: 1.0; letter-spacing: -2px; color: #FFFFFF">Creamos<br><span id="typed" style="color: #A78BFA"></span><span class="caret"></span><br>que trabajan por vos.</h1>
 <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #B4B9C4; max-width: 580px">Diagnosticamos tu negocio, diseñamos la tecnología que necesita y la dejamos funcionando. Webs, apps, automatizaciones y agentes de inteligencia artificial, explicados claro.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px">
-<a href="#diagnostico-online" style="background: #7C3AED; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; box-shadow: 0 0 32px rgba(124,58,237,0.45)">Hacé tu diagnóstico</a>
+<a href="diagnostico.html" style="background: #7C3AED; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; box-shadow: 0 0 32px rgba(124,58,237,0.45)">Hacé tu diagnóstico</a>
 <a href="#demo" style="border: 1.5px solid #8FA8FF; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Ver la demo en vivo</a>
 </div>
 </div>
@@ -218,7 +218,7 @@ body.noscroll{overflow:hidden}
 <span style="margin-top: auto; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 36px; color: #FFFFFF">$50.000 <span style="font-size: 14px; font-family: Inter, sans-serif; font-weight: 400; color: #B4B9C4">ARS</span></span>
 </div>
 </div>
-<a href="#diagnostico-online" class="reveal" style="align-self: flex-start; background: #7C3AED; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Empezar el cuestionario</a>
+<a href="diagnostico.html" class="reveal" style="align-self: flex-start; background: #7C3AED; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Empezar el cuestionario</a>
 </div>
 </section>
 <section id="demo" style="position: relative; padding: 104px 24px; background: #121826; overflow: hidden">
@@ -512,7 +512,7 @@ else if(t.id==='qtext')D.ans[D.qi]=t.value;});
 function openDiag(){$('diag').classList.add('open');document.body.classList.add('noscroll');if(D.screen==='analyzing')D.screen='intro';render();}
 function closeDiag(){$('diag').classList.remove('open');document.body.classList.remove('noscroll');if(location.hash==='#diagnostico-online')history.replaceState(null,'',location.pathname);}
 $('dclose').addEventListener('click',closeDiag);
-document.querySelectorAll('a[href="#diagnostico-online"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#diagnostico-online');openDiag();});});
+document.querySelectorAll('a[href="diagnostico.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#diagnostico-online');openDiag();});});
 if(location.hash==='#diagnostico-online')openDiag();
 })();
 </script>
