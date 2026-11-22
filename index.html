@@ -512,7 +512,7 @@ else if(t.id==='qtext')D.ans[D.qi]=t.value;});
 function openDiag(){$('diag').classList.add('open');document.body.classList.add('noscroll');if(D.screen==='analyzing')D.screen='intro';render();}
 function closeDiag(){$('diag').classList.remove('open');document.body.classList.remove('noscroll');if(location.hash==='#diagnostico-online')history.replaceState(null,'',location.pathname);}
 $('dclose').addEventListener('click',closeDiag);
-document.querySelectorAll('a[href="diagnostico.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#diagnostico-online');openDiag();});});
+document.querySelectorAll('a[href="diagnostico.html"]').forEach(function(a){a.addEventListener('click',function(e){});});
 if(location.hash==='#diagnostico-online')openDiag();
 })();
 </script>
