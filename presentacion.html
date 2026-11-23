@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnóstico de tu negocio · lina.ia</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141a3c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="lina-intro.js"></script>
+<style>
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0e1230);--ink:light-dark(#141a3c,#eef0ff);--soft:light-dark(#555c84,#a9aed4);
+--navy:#141a3c;--vio:light-dark(#6d3fd6,#a98bff);--cel:light-dark(#1b8fc2,#5cc8f2);--pain:light-dark(#d43f3a,#ff7b73);--warn:light-dark(#b86e00,#ffb347);
+--line:light-dark(#d9dcec,#2c3360);--lane:light-dark(#f4f5fb,#151a40);--card:light-dark(#ffffff,#161b44);--node:light-dark(#ffffff,#1b2150)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;overflow-x:clip}
+html{scroll-padding-top:20px;scroll-behavior:smooth}
+.band{padding:clamp(24px,3.5vw,48px) max(4vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+header.band{background:var(--navy);color:#fff}
+.brand{font-weight:800;font-size:20px}.brand b{color:#5cc8f2}
+h1{font-size:clamp(30px,4.4vw,48px);line-height:1.06;margin:12px 0 10px;text-wrap:balance;font-weight:800}
+.sub{color:#c9cdf0;margin:0 0 22px;max-width:64ch}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.steps a{display:block;color:#fff;text-decoration:none;border:1px solid #39407a;border-radius:14px;padding:12px 14px;background:#1b2250;min-height:44px}
+.steps a:hover{border-color:#a98bff}
+.steps b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#a98bff;color:#141a3c;font-size:15px;margin-right:6px}
+.steps span{display:block;color:#c9cdf0;font-size:14px;margin-top:4px}
+h2{font-size:clamp(24px,3vw,32px);line-height:1.15;margin:0 0 6px;text-wrap:balance}
+.lead{color:var(--soft);margin:0 0 18px;max-width:70ch}
+.sec{border-top:1px solid var(--line)}
+.kick{display:inline-block;font-weight:800;color:var(--vio);font-size:15px;margin-bottom:4px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.tabs,.seg{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button,.seg button,.chip{font:inherit;font-size:16px;font-weight:700;border:1.5px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;padding:0 16px;border-radius:999px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--vio);color:#fff;border-color:var(--vio)}
+button:focus-visible,a:focus-visible,input:focus-visible,label:focus-within,.pt:focus-visible{outline:3px solid var(--cel);outline-offset:2px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+#map{display:block;width:1120px;max-width:none;height:auto}
+#map text{font-family:inherit;fill:var(--ink)}
+.pt{cursor:pointer}
+.read{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 18px;margin-top:16px}
+.read div{display:flex;gap:12px;align-items:center;font-size:15px;line-height:1.35}
+.read svg{flex:none}
+.note{font-size:14px;color:var(--soft);margin:10px 0 0}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip[aria-pressed=true]{border-color:var(--pain);color:var(--pain)}
+h3{font-size:22px;line-height:1.2;margin:0 0 10px}
+.now{margin:0 0 6px}.cost{margin:0 0 16px;color:var(--pain);font-weight:700}
+.opts{display:grid;gap:10px}
+.opt{display:block;border:2px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;background:var(--bg)}
+.opt input{position:absolute;opacity:0}
+.opt:has(input:checked){border-color:var(--vio);box-shadow:0 0 0 3px color-mix(in srgb,var(--vio) 18%,transparent)}
+.oh{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.oh strong{font-size:17px}.save{font-weight:800;color:var(--vio);white-space:nowrap}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--lane);color:var(--soft);white-space:nowrap}
+.risk{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--lane);font-size:15px}
+.risk span{font-weight:800;color:var(--pain)}.risk em{font-style:normal;font-weight:800;color:var(--cel)}
+.sum{position:sticky;top:16px}
+.big{font-size:clamp(38px,5.5vw,54px);font-weight:800;line-height:1;color:var(--vio);margin:6px 0}
+.row{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:9px 0 0;margin-top:9px;font-size:15.5px}
+.row b{white-space:nowrap}
+.money label{display:block;font-size:15px;font-weight:700;margin-top:14px}
+.money input{font:inherit;font-size:17px;width:100%;min-height:44px;margin-top:6px;padding:0 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.vu{border-left:6px solid var(--warn)}
+.vstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:8px}.vstat{font-size:15px;font-weight:700}
+.vh{margin:24px 0 12px}.vu.hi{border-left-color:var(--pain)}
+.recs{margin:6px 0 0;padding-left:22px;display:grid;gap:6px}.recs li{padding-left:4px}
+.vu .lvl{font-weight:800;color:var(--warn)}
+.vu p{margin:8px 0 0}.vu strong{display:block;font-size:18px;line-height:1.3;margin-top:6px}
+.fix{color:var(--cel);font-weight:800}
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.stage h3{font-size:19px;margin:0}.stage .when{color:var(--soft);font-size:15px;margin:0 0 10px}
+.stage ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.stage li{background:var(--lane);border-radius:10px;padding:10px 12px;font-size:15.5px;line-height:1.4}
+.stage li b{color:var(--vio);white-space:nowrap}
+.empty{color:var(--soft);font-size:15px}
+.close{margin-top:18px;background:var(--navy);color:#fff;border:0}
+.close .big{color:#a98bff}.close p{margin:6px 0 0;color:#dfe2ff}
+footer{background:var(--navy);color:#c9cdf0;font-size:15px}
+footer b{color:#fff}
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.sum{position:static}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.vstats{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.plan{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:no-preference){.flow{stroke-dasharray:6 5;animation:run 1.2s linear infinite}@keyframes run{to{stroke-dashoffset:-11}}}
+.brand{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none}.brand svg{width:34px;height:34px}
+.home{display:inline-block;margin-top:10px;color:#fff;font-weight:700;text-decoration:none;border:1.5px solid #39407a;border-radius:999px;padding:10px 18px}.home:hover{border-color:#a98bff}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.top .home{margin:0;font-size:15px;padding:8px 14px}
+</style>
+</head>
+<body>
+<header class="band"><div class="wrap">
+<div class="top"><a class="brand" href="./" aria-label="Ir a la página principal de lina.ia"><svg viewBox="0 0 128 128" aria-hidden="true"><path d="M56 118 Q53 88 61 60 L71 62 Q64 90 67 118 Z" fill="#fff"/><path d="M66 56 Q40 26 12 46 Q40 42 66 56 Z" fill="#fff"/><path d="M66 56 Q54 16 26 12 Q46 34 66 56 Z" fill="#fff"/><path d="M66 56 Q80 16 108 14 Q86 34 66 56 Z" fill="#fff"/><path d="M66 56 Q96 30 118 50 Q90 44 66 56 Z" fill="#a98bff"/><circle cx="66" cy="56" r="10" fill="#5cc8f2"/></svg><span>lina<b>.</b>ia</span></a><a class="home" href="./">← Página principal</a></div>
+<h1>Diagnóstico de tu negocio</h1>
+<p class="sub">Dibujamos cómo trabajás hoy, marcamos dónde se va el tiempo y qué pasa si algo falla, y armamos un plan en orden. Sin palabras raras: todo se explica con tu día a día.</p>
+<nav class="steps" aria-label="Los 4 pasos del diagnóstico">
+<a href="#paso1"><b>1</b>Cómo trabajás hoy<span>El dibujo de tu negocio</span></a>
+<a href="#paso2"><b>2</b>Dónde se pierde tiempo<span>Y qué se puede mejorar</span></a>
+<a href="#paso3"><b>3</b>Qué pasa si algo falla<span>Lo que depende de una sola persona</span></a>
+<a href="#paso4"><b>4</b>Plan paso a paso<span>Qué hacer primero y qué después</span></a>
+</nav>
+</div></header>
+
+<main>
+<section class="band" id="paso1"><div class="wrap">
+<span class="kick">Paso 1</span>
+<h2>Así trabaja hoy tu negocio</h2>
+<p class="lead">Separamos el negocio en 4 partes. Elegí una para ver su recorrido: se lee de izquierda a derecha, como una historieta. Cada franja es una persona o un puesto.</p>
+<div class="bar">
+<div class="tabs" id="tabs" role="group" aria-label="Partes del negocio"></div>
+<div class="seg" role="group" aria-label="Vista"><button id="vNow" aria-pressed="true">Cómo es hoy</button><button id="vNew" aria-pressed="false">Con las mejoras</button></div>
+</div>
+<p class="note" id="areaDesc" style="margin:0 0 10px"></p>
+<div class="scroll"><svg id="map" role="img" aria-label="Dibujo del recorrido de trabajo"></svg></div>
+<p class="note">Tocá los números para ver cada mejora y los avisos para ver qué pasa si algo falla. En el celu, deslizá el dibujo hacia el costado.</p>
+<div class="read" aria-label="Cómo leer el dibujo">
+<div><svg width="40" height="40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2"/></svg>Acá empieza el recorrido</div>
+<div><svg width="40" height="40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="5"/></svg>Acá termina</div>
+<div><svg width="52" height="40"><rect x="3" y="7" width="46" height="26" rx="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>Una tarea que alguien hace</div>
+<div><svg width="40" height="40"><path d="M20 3 37 20 20 37 3 20Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 14l12 12M26 14 14 26" stroke="currentColor" stroke-width="2.5"/></svg>Una pregunta: se sigue por un solo camino</div>
+<div><svg width="40" height="40"><path d="M8 4h17l8 8v24H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Un papel o un archivo</div>
+<div><svg width="40" height="40"><circle cx="20" cy="20" r="13" fill="#d43f3a"/><text x="20" y="25" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">1</text></svg>Acá se pierde tiempo</div>
+<div><svg width="40" height="40"><rect x="7" y="7" width="26" height="26" rx="6" fill="#b86e00"/><text x="20" y="26" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">!</text></svg>Si esto falla, se frena todo</div>
+<div><svg width="40" height="40"><circle cx="20" cy="20" r="13" fill="#6d3fd6"/><text x="20" y="25" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">1</text></svg>Mejora ya aplicada</div>
+</div>
+</div></section>
+
+<section class="band sec" id="paso2"><div class="wrap">
+<span class="kick">Paso 2</span>
+<h2>Dónde se pierde tiempo y cómo se resuelve</h2>
+<p class="lead">En cada punto hay opciones, de la más simple a la más completa. Las elegimos juntos según lo que necesitás y lo que querés invertir.</p>
+<div class="grid">
+<div class="card" id="detail" aria-live="polite"></div>
+<aside class="card sum">
+<h3>Lo que recuperás por semana</h3>
+<div class="big" id="tot"></div>
+<p class="note" id="totLost" style="margin:0"></p>
+<div id="rows"></div>
+<div class="money"><label for="hv">¿Cuánto vale una hora de trabajo? ($)</label><input id="hv" type="number" inputmode="numeric" min="0" step="500" value="5000"></div>
+<p class="note" id="totMoney"></p>
+</aside>
+</div>
+</div></section>
+
+<section class="band sec" id="paso3"><div class="wrap">
+<span class="kick">Paso 3</span>
+<h2>Qué pasa si alguien falta o algo se rompe</h2>
+<p class="lead">Hay dos tipos de riesgo. Unos son cosas que hoy funcionan solo porque una persona o una herramienta está siempre: el día que falla, el negocio se frena. Los otros son robos y estafas comunes en negocios que venden por WhatsApp. Para cada uno, lo que recomendamos hacer, en orden.</p>
+<div class="vstats" id="vsum"></div>
+<div id="vulns"></div>
+</div></section>
+
+<section class="band sec" id="paso4"><div class="wrap">
+<span class="kick">Paso 4</span>
+<h2>Tu plan, en orden</h2>
+<p class="lead">Empezamos por lo más rápido y lo que más alivia. Cada etapa se nota en el día a día antes de pasar a la siguiente. Se arma solo con lo que elegiste en el paso 2.</p>
+<div class="card stage" id="plan0" style="margin-bottom:14px;border-left:6px solid var(--warn)"></div>
+<div class="plan" id="plan"></div>
+<div class="card close" id="closing"></div>
+</div></section>
+</main>
+<footer class="band"><div class="wrap"><a class="home" href="./" style="margin:0 0 14px">← Volver a la página principal de lina.ia</a><br><b>lina.ia</b> · Tecnología para agilizar el trabajo duro · lina.ia.estudio@gmail.com · Instagram @linaia.estudio · WhatsApp 11 7368-5640<br><span style="font-size:13px">Ejemplo: comercio que vende por WhatsApp. Los tiempos y el valor de la hora son datos de muestra; se reemplazan con los del cliente.</span></div></footer>
+
+<script>
+{
+const AREAS=[
+{k:"ventas",name:"Ventas",desc:"Desde que alguien pregunta hasta que paga.",lanes:["Cliente","Atención"],
+ nodes:[{id:"a",t:"start",l:0,c:0,txt:"Pregunta por WhatsApp"},{id:"b",t:"task",l:1,c:1,txt:"Responder a mano, uno por uno",nw:"El asistente responde al instante",op:0,vu:0},
+  {id:"c",t:"xor",l:1,c:2,txt:"¿Compra?"},{id:"d",t:"end",l:0,c:2,txt:"Se va sin comprar"},
+  {id:"e",t:"task",l:1,c:3,txt:"Anotar el pedido en un cuaderno",nw:"El pedido queda guardado solo",op:1},
+  {id:"f",t:"task",l:1,c:4,txt:"Cobrar y revisar el comprobante",nw:"Aviso automático del pago",op:2},
+  {id:"g",t:"end",l:0,c:5,txt:"Venta hecha"},{id:"h",t:"data",l:0,c:3,txt:"Cuaderno",nw:"Planilla"}],
+ edges:[["a","b"],["b","c"],["c","d","No"],["c","e","Sí"],["e","f"],["f","g"],["e","h","",1]]},
+{k:"marketing",name:"Marketing",desc:"Cómo te conoce la gente y llega a escribirte.",lanes:["Dueño","Clientes"],
+ nodes:[{id:"a",t:"start",l:0,c:0,txt:"Hay que publicar algo"},{id:"b",t:"task",l:0,c:1,txt:"Pensar, sacar fotos y escribir",nw:"Publicaciones listas del mes",op:3,vu:1},
+  {id:"c",t:"task",l:0,c:2,txt:"Publicar cuando hay tiempo",nw:"Se publican solas el día elegido"},
+  {id:"d",t:"task",l:1,c:3,txt:"Ven la publicación"},{id:"e",t:"xor",l:1,c:4,txt:"¿Escriben?"},{id:"f",t:"end",l:1,c:5,txt:"No pasa nada"},
+  {id:"g",t:"task",l:0,c:5,txt:"El contacto queda olvidado en el chat",nw:"Se le escribe de nuevo a los 2 días",op:4},{id:"h",t:"end",l:0,c:6,txt:"Cliente nuevo"}],
+ edges:[["a","b"],["b","c"],["c","d"],["d","e"],["e","f","No"],["e","g","Sí"],["g","h"]]},
+{k:"admin",name:"Administración",desc:"Facturas, gastos, caja y papeles para el contador.",lanes:["Dueño","Contador"],
+ nodes:[{id:"a",t:"start",l:0,c:0,txt:"Llega una factura o un gasto"},{id:"b",t:"task",l:0,c:1,txt:"Guardar el papel en una caja",nw:"Foto y queda cargado solo",op:5,vu:2},
+  {id:"c",t:"task",l:0,c:2,txt:"Contar caja y stock a mano",nw:"Resumen diario automático",op:6,vu:3},
+  {id:"d",t:"task",l:0,c:3,txt:"Juntar todo a fin de mes",nw:"Todo ya está ordenado"},
+  {id:"e",t:"task",l:1,c:4,txt:"Pide los papeles que faltan"},{id:"f",t:"end",l:1,c:5,txt:"Mes cerrado"}],
+ edges:[["a","b"],["b","c"],["c","d"],["d","e"],["e","f"]]},
+{k:"entrega",name:"Entrega",desc:"Desde que el pedido está confirmado hasta que el cliente lo tiene.",lanes:["Atención","Preparación","Cliente"],
+ nodes:[{id:"a",t:"start",l:0,c:0,txt:"Pedido confirmado"},{id:"b",t:"task",l:1,c:1,txt:"Preparar leyendo el cuaderno",nw:"Lista clara de pedidos",op:7,vu:4},
+  {id:"c",t:"xor",l:1,c:2,txt:"¿Hay de todo?"},{id:"d",t:"task",l:0,c:2,txt:"Avisar al cliente que falta algo",nw:"Aviso antes de que falte",op:8},
+  {id:"e",t:"end",l:0,c:3,txt:"Pedido demorado"},{id:"f",t:"task",l:2,c:4,txt:"Retira o recibe el pedido",nw:"Le avisan solo que está listo"},{id:"g",t:"end",l:2,c:5,txt:"Entregado"}],
+ edges:[["a","b"],["b","c"],["c","d","No"],["d","e"],["c","f","Sí"],["f","g"]]}];
+
+const OPS=[
+{a:0,name:"Responder consultas",now:"Las mismas preguntas (precio, horario, si hay stock) se contestan a mano, una por una, muchas veces de noche.",lost:7,
+ o:[{n:"Mensajes listos en WhatsApp",x:"Guardamos las respuestas a las preguntas de siempre. Se mandan con dos toques.",h:2,d:1,r:"Casi ninguno.",c:"Revisamos que no tengan datos privados."},
+    {n:"Asistente que responde solo",x:"Un asistente con inteligencia artificial contesta a cualquier hora, usando solo la información que cargamos juntos.",h:5,d:2,r:"Podría contestar algo que no sabe.",c:"Solo usa lo que cargamos y, si duda, le pasa la charla a una persona."},
+    {n:"Asistente que responde y arma el pedido",x:"Además de contestar, deja el pedido listo para que vos solo lo confirmes.",h:6.5,d:3,r:"Tiene acceso al WhatsApp del negocio.",c:"Verificación en dos pasos y la contraseña la tiene solo el dueño."}]},
+{a:0,name:"Anotar pedidos",now:"Los pedidos van a un cuaderno. Se traspapelan, no se entiende la letra y después cuesta saber qué se vendió.",lost:4,
+ o:[{n:"Formulario que ordena los pedidos",x:"Cada pedido se carga en un formulario simple y queda en una lista ordenada.",h:2,d:1,r:"Si el link circula, otra persona podría ver la lista.",c:"La lista se comparte solo con los mails del equipo."},
+    {n:"Pedidos que se anotan solos",x:"Lo que llega por WhatsApp queda guardado en una planilla, sin copiar nada a mano.",h:3.5,d:2,r:"Datos de clientes guardados en internet.",c:"Acceso con clave y copia de seguridad cada semana."}]},
+{a:0,name:"Cobros",now:"Hay que mirar cada comprobante y entrar al banco para ver si la plata llegó de verdad.",lost:3,
+ o:[{n:"Link de pago fijo",x:"Un mismo link para pagar, que se manda siempre igual.",h:1,d:1,r:"Comprobantes falsos (capturas truchas).",c:"El pago se confirma en la cuenta, nunca mirando la captura."},
+    {n:"Aviso automático cuando entra el pago",x:"Te llega un mensaje cuando el pago se acredita, con el número de pedido.",h:2.5,d:2,r:"Hay que conectar la cuenta donde se cobra.",c:"Permiso solo para mirar: puede ver los pagos, no puede mover plata."}]},
+{a:1,name:"Publicar en redes",now:"Se publica cuando hay un rato. Pensar qué poner, sacar fotos y escribir lleva horas, y a veces pasan semanas sin publicar.",lost:4,
+ o:[{n:"Calendario del mes",x:"Armamos juntos qué se publica cada semana, con las ideas ya pensadas.",h:1.5,d:1,r:"Casi ninguno.",c:"El calendario queda en una cuenta del negocio, no en un celular personal."},
+    {n:"Publicaciones preparadas y programadas",x:"Textos e imágenes armados con ayuda de inteligencia artificial, que se publican solos el día elegido.",h:3,d:2,r:"La cuenta abierta en varios aparatos.",c:"Verificación en dos pasos y vos revisás todo antes de que salga."}]},
+{a:1,name:"Volver a escribirle a quien preguntó",now:"La gente que pregunta y no compra queda olvidada en el chat. Nadie le vuelve a escribir y se pierden ventas.",lost:2,
+ o:[{n:"Lista de interesados",x:"Una lista simple con quién preguntó, qué quería y cuándo.",h:1,d:1,r:"Es una lista con teléfonos de personas.",c:"Queda en una cuenta con clave y no se comparte."},
+    {n:"Mensaje de seguimiento automático",x:"A los 2 días le llega un mensaje amable a quien preguntó y no compró.",h:2,d:2,r:"Mandar de más molesta y pueden bloquear el número.",c:"Un solo mensaje, y no se insiste si la persona no quiere."}]},
+{a:2,name:"Guardar facturas y gastos",now:"Los papeles van a una caja. A fin de mes hay que buscar todo y siempre falta algo para el contador.",lost:3,
+ o:[{n:"Carpeta digital por mes",x:"Cada papel se fotografía y se guarda en una carpeta en internet, ordenada por mes.",h:1,d:1,r:"Papeles del negocio en internet.",c:"Carpeta privada con clave; solo vos y el contador entran."},
+    {n:"Foto que se carga sola",x:"Sacás la foto y el monto, la fecha y el proveedor se anotan solos en la planilla.",h:2.5,d:2,r:"La lectura automática puede equivocarse en un número.",c:"Cada carga se puede revisar y corregir en un toque."}]},
+{a:2,name:"Control de caja y stock",now:"Al cerrar el día se cuenta todo a mano. No se sabe bien qué se vende más ni cuánto se ganó.",lost:4,
+ o:[{n:"Planilla que hace las cuentas",x:"Se anotan las ventas y la planilla calcula sola la caja y el stock.",h:2,d:1,r:"Borrar una cuenta sin querer.",c:"Las cuentas quedan protegidas; solo se escribe en las casillas de carga."},
+    {n:"Resumen diario automático",x:"Cada noche te llega cuánto se vendió, qué fue lo más vendido y cuánto hay en caja.",h:3,d:2,r:"Los números del negocio quedan en internet.",c:"Solo entra el dueño, con verificación en dos pasos."},
+    {n:"Resumen diario con aviso de stock bajo",x:"Lo mismo, y además te avisa qué reponer antes de que falte.",h:4,d:3,r:"Avisos que llegan a quien no corresponde.",c:"Los avisos van solo al número del dueño."}]},
+{a:3,name:"Preparar pedidos",now:"Quien prepara lee el cuaderno. Si algo no se entiende hay que preguntar, y el pedido se demora o sale mal.",lost:3,
+ o:[{n:"Lista de pedidos en el celular",x:"Cada pedido con su estado: nuevo, preparando, listo, entregado.",h:2,d:1,r:"Un celular perdido con la lista abierta.",c:"Se entra con clave y se puede cerrar desde otro aparato."},
+    {n:"Lista + aviso automático al cliente",x:"Cuando el pedido pasa a 'listo', al cliente le llega un mensaje solo.",h:3,d:2,r:"Un mensaje al número equivocado.",c:"El número sale del pedido, no se escribe a mano."}]},
+{a:3,name:"Cuando falta mercadería",now:"Recién al preparar se descubre que falta algo, con el cliente esperando.",lost:1.5,
+ o:[{n:"Aviso de stock bajo",x:"Cuando un producto baja de cierta cantidad, te llega un aviso para reponer.",h:1.5,d:2,r:"Avisos que se pasan por alto.",c:"Llegan una vez por día, todos juntos, a la hora que elijas."}]}];
+
+const VULNS=[
+{a:0,who:"persona",title:"Si el dueño no está, nadie sabe los precios",eff:"Las consultas quedan sin respuesta y el cliente termina comprando en otro lado.",lvl:"Alto",cost:"Sin costo",
+ recs:["Escribir la lista de precios y horarios en un solo lugar compartido.","Que al menos otra persona del equipo pueda responder con esa lista.","Si se suma el asistente, usa esa misma lista y siempre está al día."]},
+{a:1,who:"herramienta",title:"Las redes dependen de un solo celular",eff:"Si se rompe, se pierde o te lo roban, podés quedarte sin Instagram y sin WhatsApp, que es donde están tus clientes.",lvl:"Alto",cost:"Sin costo",
+ recs:["Crear un mail solo del negocio y conectar ahí Instagram y WhatsApp.","Activar la verificación en dos pasos en las dos.","Guardar los códigos de respaldo en papel, en un lugar seguro.","Tener un segundo aparato desde donde poder entrar."]},
+{a:2,who:"herramienta",title:"Todos los papeles están en una caja",eff:"Una mancha de agua, una mudanza o un descuido y se pierden las facturas del año, justo las que pide el contador.",lvl:"Medio",cost:"Sin costo",
+ recs:["Sacarle foto a cada papel el mismo día que llega.","Guardarlas en una carpeta en internet, ordenada por mes.","Darle acceso solo de lectura al contador."]},
+{a:2,who:"persona",title:"Solo el dueño sabe cerrar la caja",eff:"Si se enferma o se toma vacaciones, nadie sabe cuánto se vendió ni cuánto hay.",lvl:"Alto",cost:"Sin costo",
+ recs:["Escribir el cierre de caja en pasos cortos, como una receta.","Practicarlo una vez con otra persona del equipo.","Usar una planilla simple que cualquiera pueda completar."]},
+{a:3,who:"persona",title:"Solo quien anotó entiende el pedido",eff:"Si esa persona falta, los pedidos se demoran o salen mal, y el cliente se enoja.",lvl:"Medio",cost:"Sin costo",
+ recs:["Anotar siempre igual: producto, cantidad, nombre y hora de retiro.","Pasar a una lista que todos puedan leer desde el celular."]},
+{a:-1,who:"seguridad",title:"Te pueden robar el WhatsApp con un código",eff:"Alguien escribe haciéndose pasar por soporte o por un cliente y te pide el código de 6 números que te llegó por SMS. Con ese código se queda con tu WhatsApp y les pide plata a tus clientes en tu nombre.",lvl:"Alto",cost:"Sin costo, 5 minutos",
+ recs:["Activar la verificación en dos pasos de WhatsApp (un PIN que solo sabés vos).","Nunca pasarle a nadie un código que te llegue por mensaje, aunque diga ser WhatsApp o el banco.","Avisarle al equipo: nadie serio pide esos códigos."]},
+{a:-1,who:"seguridad",title:"La misma contraseña para todo",eff:"Si se descubre una, entran a todo: el mail, las redes y hasta el banco.",lvl:"Alto",cost:"Sin costo",
+ recs:["Usar contraseñas distintas para el mail, el banco y las redes.","Guardarlas en el administrador de contraseñas del celular (por ejemplo, el de Google), no en un papel pegado.","Activar la verificación en dos pasos en el mail del negocio: es la llave de todo lo demás."]},
+{a:-1,who:"seguridad",title:"No hay copia de seguridad",eff:"Si el celular o la compu se rompen o se pierden, se van con ellos los contactos, las fotos, los chats y las planillas.",lvl:"Medio",cost:"Sin costo o muy bajo",
+ recs:["Activar la copia automática de WhatsApp en la nube.","Guardar las planillas en internet y no solo en el aparato.","Una vez por mes, revisar que la última copia sea reciente."]},
+{a:-1,who:"seguridad",title:"Comprobantes de pago falsos",eff:"Te mandan una captura de una transferencia que nunca se hizo y entregás la mercadería sin cobrar.",lvl:"Medio",cost:"Sin costo",
+ recs:["Confirmar cada pago en la app del banco o de Mercado Pago, nunca solo con la captura.","No entregar hasta ver la plata acreditada.","Desconfiar de quien apura: 'ya te transferí, mandalo rápido'."]}];
+
+const areaName=a=>a<0?"Todo el negocio":AREAS[a].name;
+const WHO={persona:"Depende de una persona",herramienta:"Depende de una herramienta",seguridad:"Robo o estafa"};
+const recList=v=>`<ol class="recs">${v.recs.map(r=>`<li>${esc(r)}</li>`).join('')}</ol>`;
+const pick=[1,0,1,0,1,0,2,0,0];let area=0,view="now",selOp=0,selVu=-1;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=x=>String(Math.round(x*10)/10).replace('.',',');
+const money=x=>"$"+Math.round(x).toLocaleString('es-AR');
+const W=1120,LH=136,TOP=8,HX=46,cx=c=>130+c*152;
+function wrap(s,max){const w=s.split(' '),o=[];let c='';for(const x of w){if((c+' '+x).trim().length>max&&c){o.push(c);c=x}else c=(c+' '+x).trim()}o.push(c);return o}
+function tsp(lines,x,y,lh){const y0=y-(lines.length-1)*lh/2;return lines.map((t,i)=>`<tspan x="${x}" y="${y0+i*lh}">${esc(t)}</tspan>`).join('')}
+const half=n=>n.t==="task"?[66,32]:n.t==="data"?[18,24]:n.t==="xor"?[22,22]:[18,18];
+
+function draw(){
+ const A=AREAS[area],nw=view==="new",H=TOP*2+A.lanes.length*LH,svg=$('map');
+ svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+ const cy=l=>TOP+l*LH+LH/2,by=id=>A.nodes.find(n=>n.id===id);
+ let h='<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="var(--soft)"/></marker></defs>';
+ h+=`<rect x="1" y="${TOP}" width="${W-2}" height="${LH*A.lanes.length}" rx="12" fill="none" stroke="var(--line)" stroke-width="2"/>`;
+ A.lanes.forEach((n,i)=>{const y=TOP+i*LH;h+=`<rect x="${HX}" y="${y+1}" width="${W-HX-3}" height="${LH-2}" fill="${i%2?'var(--lane)':'transparent'}"/>`;
+  if(i)h+=`<line x1="1" x2="${W-1}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1.5"/>`;
+  h+=`<text transform="translate(${HX/2+5} ${y+LH/2}) rotate(-90)" text-anchor="middle" font-size="14" font-weight="800">${esc(n)}</text>`});
+ h+=`<line x1="${HX}" x2="${HX}" y1="${TOP}" y2="${TOP+LH*A.lanes.length}" stroke="var(--line)" stroke-width="1.5"/>`;
+ for(const [a,b,lab,assoc] of A.edges){const S=by(a),T=by(b),sx=cx(S.c),tx=cx(T.c),sy=cy(S.l),ty=cy(T.l),[sw,sh]=half(S),[tw,th]=half(T);let d,lx,ly;
+  if(assoc){d=`M${sx} ${sy+(ty>sy?sh:-sh)}V${ty+(ty>sy?-th:th)}`}
+  else if(sx===tx){const dn=ty>sy;d=`M${sx} ${sy+(dn?sh:-sh)}V${ty+(dn?-th:th)}`;lx=sx+9;ly=(sy+ty)/2+5}
+  else if(S.l===T.l){d=`M${sx+sw} ${sy}H${tx-tw}`;lx=sx+sw+6;ly=sy+20}
+  else if(T.t==="end"){const dn=ty>sy;d=`M${sx} ${sy+(dn?sh:-sh)}V${ty-10}H${tx-tw}`;lx=sx+9;ly=sy+(dn?sh+18:-sh-8)}
+  else{const dn=ty>sy,ex=S.t==="xor"?sx:sx+sw,ey=S.t==="start"?sy-10:sy;d=S.t==="xor"?`M${sx} ${sy+(dn?sh:-sh)}V${ty}H${tx-tw}`:`M${ex} ${ey}H${tx}V${ty+(dn?-th:th)}`;lx=sx+9;ly=sy+(dn?sh+18:-sh-8)}
+  h+=`<path d="${d}" fill="none" stroke="var(--soft)" stroke-width="2" ${assoc?'stroke-dasharray="3 4"':'marker-end="url(#ar)"'} ${nw&&!assoc?'class="flow"':''}/>`;
+  if(lab)h+=`<text x="${lx}" y="${ly}" font-size="14" font-weight="800" style="fill:var(--soft)">${lab}</text>`}
+ for(const n of A.nodes){const x=cx(n.c),y=cy(n.l),txt=nw&&n.nw?n.nw:n.txt,isOp=n.op!==undefined,on=nw&&!!n.nw,st=on?'var(--vio)':'var(--ink)';let g='';
+  if(n.t==="start"||n.t==="end"){g+=`<circle cx="${x}" cy="${y-10}" r="17" fill="var(--node)" stroke="${st}" stroke-width="${n.t==='end'?5:2}"/>`;
+   const up=A.edges.some(([a,b])=>b===n.id&&cx(by(a).c)===x&&by(a).l>n.l);
+   g+=`<text text-anchor="middle" font-size="13">${(L=>tsp(L,x,up?y-38-(L.length-1)*7.5:y+26+(L.length-1)*7.5,15))(wrap(txt,15))}</text>`}
+  else if(n.t==="xor"){g+=`<path d="M${x} ${y-22} ${x+22} ${y} ${x} ${y+22} ${x-22} ${y}Z" fill="var(--node)" stroke="${st}" stroke-width="2"/><path d="M${x-7} ${y-7}l14 14M${x+7} ${y-7}l-14 14" stroke="${st}" stroke-width="3"/>`;
+   g+=` <text x="${x+26}" y="${y-30}" text-anchor="start" font-size="13" font-weight="700">${esc(txt)}</text>`}
+  else if(n.t==="data"){g+=`<path d="M${x-18} ${y-24}h26l10 10v38h-36Z" fill="var(--node)" stroke="${on?'var(--cel)':'var(--ink)'}" stroke-width="2"/><text x="${x+30}" y="${y+5}" font-size="13">${esc(txt)}</text>`}
+  else{g+=`<rect x="${x-66}" y="${y-32}" width="132" height="64" rx="10" fill="${on?'color-mix(in srgb,var(--vio) 12%,var(--node))':'var(--node)'}" stroke="${on?'var(--vio)':isOp?'var(--pain)':'var(--ink)'}" stroke-width="2"/>`;
+   g+=`<text text-anchor="middle" font-size="13" font-weight="600">${tsp(wrap(txt,17),x,y+4,15)}</text>`}
+  if(isOp){const mx=x+60,my=y-32,act=selOp===n.op&&selVu<0;
+   g+=`<g class="pt" data-op="${n.op}" tabindex="0" role="button" aria-label="Mejora ${n.op+1}: ${esc(OPS[n.op].name)}"><circle cx="${mx}" cy="${my}" r="${act?18:15}" fill="${nw?'var(--vio)':'var(--pain)'}" stroke="var(--bg)" stroke-width="3"/><text x="${mx}" y="${my+5}" text-anchor="middle" font-size="14" font-weight="800" style="fill:#fff">${n.op+1}</text></g>`}
+  if(n.vu!==undefined){const vx=x-62,vy=y-34,ok=nw;
+   g+=`<g class="pt" data-vu="${n.vu}" tabindex="0" role="button" aria-label="Riesgo: ${esc(VULNS[n.vu].title)}"><rect x="${vx-13}" y="${vy-13}" width="26" height="26" rx="6" fill="${ok?'var(--cel)':'var(--warn)'}" stroke="var(--bg)" stroke-width="3"/><text x="${vx}" y="${vy+6}" text-anchor="middle" font-size="16" font-weight="800" style="fill:#fff">${ok?'✓':'!'}</text></g>`}
+  h+=g}
+ svg.innerHTML=h;$('areaDesc').textContent=A.desc}
+
+function tabs(){$('tabs').innerHTML=AREAS.map((A,i)=>`<button data-a="${i}" aria-pressed="${i===area}">${esc(A.name)}</button>`).join('')}
+
+function detail(){const el=$('detail');
+ if(selVu>=0){const v=VULNS[selVu];el.innerHTML=`<span class="tag">${esc(areaName(v.a))}</span> <span class="tag">${WHO[v.who]}</span><h3 style="margin-top:10px">${esc(v.title)}</h3><p class="now"><strong>Qué puede pasar:</strong> ${esc(v.eff)}</p><p class="now">Riesgo: <span class="lvl" style="color:var(--warn);font-weight:800">${v.lvl}</span> · ${esc(v.cost)}</p><p class="now"><span class="fix">Qué recomendamos:</span></p>${recList(v)}<p class="note">Todos los riesgos están juntos en el paso 3.</p>`;return}
+ const p=OPS[selOp],ids=OPS.map((o,i)=>i).filter(i=>OPS[i].a===area);
+ el.innerHTML=`<div class="chips">${ids.map(i=>`<button class="chip" data-op="${i}" aria-pressed="${i===selOp}">${i+1}. ${esc(OPS[i].name)}</button>`).join('')}</div>
+ <h3>${selOp+1}. ${esc(p.name)}</h3><p class="now"><strong>Hoy:</strong> ${esc(p.now)}</p><p class="cost">Se pierden unas ${fmt(p.lost)} horas por semana.</p><div class="opts">`+
+ p.o.map((o,i)=>`<label class="opt"><input type="radio" name="o${selOp}" value="${i}" ${pick[selOp]===i?'checked':''}><div class="oh"><strong>Opción ${"ABC"[i]}: ${esc(o.n)}</strong><span class="save">recuperás ${fmt(o.h)} h/semana</span></div><div>${esc(o.x)}</div><div style="margin-top:6px"><span class="tag">${["","Rápido de hacer","Intermedio","Más grande"][o.d]}</span></div><p class="risk"><span>Ojo:</span> ${esc(o.r)} <em>Cómo lo cuidamos:</em> ${esc(o.c)}</p></label>`).join('')+
+ `<label class="opt"><input type="radio" name="o${selOp}" value="-1" ${pick[selOp]===-1?'checked':''}><div class="oh"><strong>Por ahora no</strong><span class="tag">queda como está</span></div></label></div>`}
+
+function totals(){let t=0,lost=0;const hv=Math.max(0,+$('hv').value||0);
+ $('rows').innerHTML=OPS.map((p,i)=>{lost+=p.lost;const o=p.o[pick[i]];if(o)t+=o.h;return `<div class="row"><span>${i+1}. ${esc(p.name)} · ${o?"opción "+"ABC"[pick[i]]:"por ahora no"}</span><b>${o?fmt(o.h)+" h":"—"}</b></div>`}).join('');
+ $('tot').textContent=fmt(t)+" h";
+ $('totLost').textContent=`Hoy se pierden unas ${fmt(lost)} horas por semana en estas tareas.`;
+ $('totMoney').innerHTML=`Son unas <strong>${Math.round(t*4.3)} horas por mes</strong>, que valen alrededor de <strong>${money(t*4.3*hv)}</strong>.`;
+ plan(t,lost,hv)}
+
+function plan(t,lost,hv){const st=[[],[],[]];OPS.forEach((p,i)=>{const o=p.o[pick[i]];if(o)st[o.d-1].push({i,p,o})});
+ const meta=[["Etapa 1: alivio rápido","Primeras 2 semanas"],["Etapa 2: ordenar el trabajo","Primer mes"],["Etapa 3: el negocio funciona solo","Segundo y tercer mes"]];let acc=0;
+ const urg=VULNS.filter(v=>v.lvl==="Alto");
+ $('plan0').innerHTML=`<h3>Antes de empezar: cuidar lo básico</h3><p class="when">Esta misma semana · sin costo · lo hacemos juntos en la reunión o al otro día</p><ul>${urg.map(v=>`<li><b style="color:var(--warn)">!</b> ${esc(v.title)}<br><span style="color:var(--soft)">${esc(v.recs[0])}</span></li>`).join('')}</ul>`;
+ $('plan').innerHTML=st.map((items,k)=>{const s=items.reduce((a,x)=>a+x.o.h,0);acc+=s;return `<div class="card stage"><h3>${meta[k][0]}</h3><p class="when">${meta[k][1]} · recuperás ${fmt(s)} h/semana</p>${items.length?`<ul>${items.map(x=>`<li>${x.i+1}. ${esc(x.o.n)} <span class="tag">${esc(AREAS[x.p.a].name)}</span><br><b>+${fmt(x.o.h)} h/semana</b></li>`).join('')}</ul>`:`<p class="empty">Nada elegido para esta etapa.</p>`}<p class="note">Acumulado: ${fmt(acc)} h por semana</p></div>`}).join('');
+ const vu=VULNS.length;
+ $('closing').innerHTML=`<h3 style="color:#fff">Lo que cambia con este plan</h3><div class="big">${Math.round(t*4.3)} horas por mes</div><p>Es el tiempo que dejás de hacer a mano: unos ${money(t*4.3*hv)} por mes, con el valor de hora que pusiste. Además quedan cuidados ${vu} riesgos: lo que hoy depende de una sola persona o herramienta, y las formas más comunes de robo y estafa.</p><p>Cada mes que sigue como hoy se pierden unas ${Math.round(lost*4.3)} horas en estas tareas.</p>`}
+
+function vulns(){const hi=VULNS.filter(v=>v.lvl==="Alto").length;
+ $('vsum').innerHTML=`<div class="card vstat"><div class="big" style="color:var(--warn)">${hi}</div>riesgos altos</div><div class="card vstat"><div class="big" style="color:var(--warn)">${VULNS.length-hi}</div>riesgos medios</div><div class="card vstat"><div class="big" style="color:var(--cel)">${VULNS.filter(v=>/^Sin costo/.test(v.cost)).length}</div>se resuelven sin gastar plata</div>`;
+ const groups=[["persona","Lo que depende de una sola persona"],["herramienta","Lo que depende de una sola herramienta"],["seguridad","Robos y estafas: cómo cuidarte"]];
+ $('vulns').innerHTML=groups.map(([k,t])=>`<h3 class="vh">${t}</h3><div class="vgrid">${VULNS.map((v,i)=>({v,i})).filter(x=>x.v.who===k).map(({v,i})=>`<div class="card vu${v.lvl==="Alto"?" hi":""}"><span class="tag">${esc(areaName(v.a))}</span> <span class="tag">Riesgo ${v.lvl.toLowerCase()}</span><strong>${esc(v.title)}</strong><p><b>Qué puede pasar:</b> ${esc(v.eff)}</p><p class="fix" style="margin-top:12px">Qué recomendamos</p>${recList(v)}<p class="note" style="margin-top:8px">${esc(v.cost)}</p></div>`).join('')}</div>`).join('')}
+
+function selectOp(i,scroll){selOp=i;selVu=-1;area=OPS[i].a;tabs();draw();detail();if(scroll)$('detail').scrollIntoView({block:'start'})}
+function selectVu(i,scroll){selVu=i;draw();detail();if(scroll)$('detail').scrollIntoView({block:'start'})}
+function hit(e){const g=e.target.closest('.pt');if(!g)return false;if(g.dataset.op!==undefined)selectOp(+g.dataset.op,true);else selectVu(+g.dataset.vu,true);return true}
+$('map').addEventListener('click',hit);
+$('map').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&hit(e))e.preventDefault()});
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;area=+b.dataset.a;const f=OPS.findIndex(o=>o.a===area);selVu=-1;if(f>=0)selOp=f;tabs();draw();detail()});
+$('detail').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)selectOp(+b.dataset.op,false)});
+$('detail').addEventListener('change',e=>{if(e.target.name){pick[selOp]=+e.target.value;totals()}});
+$('hv').addEventListener('input',totals);
+const bN=$('vNow'),bW=$('vNew');
+function setView(v){view=v;bN.setAttribute('aria-pressed',v==='now');bW.setAttribute('aria-pressed',v==='new');draw()}
+bN.onclick=()=>setView('now');bW.onclick=()=>setView('new');
+tabs();draw();detail();vulns();totals();
+}
+</script>
+</body>
+</html>
