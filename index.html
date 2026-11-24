@@ -82,6 +82,8 @@ body.noscroll{overflow:hidden}
 .chip{background:#1C2436;border:1px solid #2A3347;padding:8px 14px;border-radius:9999px;font-size:14px;color:#F3F5F9}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:640px){header nav a:not(:last-child){display:none}}
+.wide{grid-column:span 2}@media (max-width:700px){.wide{grid-column:auto}}
+svg.hero-palm{width:100%;max-width:400px;height:auto}
 </style>
 <script src="lina-intro.js"></script>
 </head>
@@ -114,8 +116,8 @@ body.noscroll{overflow:hidden}
 <a href="#demo" style="border: 1.5px solid #8FA8FF; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px; padding: 16px 26px; border-radius: 14px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Ver la demo en vivo</a>
 </div>
 </div>
-<div style="flex: 1 1 380px; position: relative; display: flex; justify-content: center; min-height: 420px">
-<svg width="400" height="400" viewBox="20 40 280 270" role="img" aria-label="Palmera de lina.ia"><g class="sway"><path fill="#FFFFFF" d="M160 170 Q96 104 40 150 Q100 134 160 170 Z"></path><path fill="#FFFFFF" d="M160 170 Q132 70 72 56 Q120 112 160 170 Z"></path><path fill="#A78BFA" d="M160 170 Q196 70 256 60 Q200 112 160 170 Z"></path><path fill="#FFFFFF" d="M160 170 Q232 110 284 152 Q220 134 160 170 Z"></path></g><path fill="#FFFFFF" d="M146 300 Q140 236 152 176 L170 178 Q160 240 168 300 Z"></path><circle class="pulse" fill="#8FA8FF" cx="160" cy="170" r="24"></circle><circle fill="#8FA8FF" cx="160" cy="170" r="24"></circle></svg>
+<div style="flex: 1 1 300px; min-width: 0; position: relative; display: flex; justify-content: center; min-height: 360px">
+<svg class="hero-palm" width="400" height="400" viewBox="20 40 280 270" role="img" aria-label="Palmera de lina.ia"><g class="sway"><path fill="#FFFFFF" d="M160 170 Q96 104 40 150 Q100 134 160 170 Z"></path><path fill="#FFFFFF" d="M160 170 Q132 70 72 56 Q120 112 160 170 Z"></path><path fill="#A78BFA" d="M160 170 Q196 70 256 60 Q200 112 160 170 Z"></path><path fill="#FFFFFF" d="M160 170 Q232 110 284 152 Q220 134 160 170 Z"></path></g><path fill="#FFFFFF" d="M146 300 Q140 236 152 176 L170 178 Q160 240 168 300 Z"></path><circle class="pulse" fill="#8FA8FF" cx="160" cy="170" r="24"></circle><circle fill="#8FA8FF" cx="160" cy="170" r="24"></circle></svg>
 <div class="floaty" style="position: absolute; top: 24px; left: 0; background: #1C2436; border: 1px solid #2A3347; color: #F3F5F9; font-size: 14px; padding: 12px 16px; border-radius: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.35)"><span style="width: 8px; height: 8px; border-radius: 9999px; background: #4ADE80"></span>Web publicada</div>
 <div class="floaty2" style="position: absolute; top: 170px; right: 0; background: #1C2436; border: 1px solid #2A3347; color: #F3F5F9; font-size: 14px; padding: 12px 16px; border-radius: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.35)"><span style="width: 8px; height: 8px; border-radius: 9999px; background: #A78BFA"></span>Asistente IA respondiendo</div>
 <div class="floaty3" style="position: absolute; bottom: 20px; left: 20px; background: #1C2436; border: 1px solid #2A3347; color: #F3F5F9; font-size: 14px; padding: 12px 16px; border-radius: 14px; display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 12px 30px rgba(0,0,0,0.35)"><span style="color: #8FA8FF">→</span>pedido nuevo a la planilla</div>
@@ -153,8 +155,8 @@ body.noscroll{overflow:hidden}
 <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -1px">Tecnología para agilizar el trabajo duro.</h2>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A5060">Muchas empresas y pymes no cierran por falta de clientes, sino por falta de control: pedidos que se pierden, stock que nadie sabe, horas enteras en tareas que se podrían hacer solas. Ordenamos y automatizamos ese trabajo para que tu negocio crezca sin desbordarte.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px">
-<div class="reveal lift" style="grid-column: span 2; min-width: 0; background: #121826; color: #FFFFFF; border-radius: 20px; padding: 32px; display: flex; flex-wrap: wrap; gap: 28px; position: relative; overflow: hidden">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 20px">
+<div class="reveal lift wide" style=" min-width: 0; background: #121826; color: #FFFFFF; border-radius: 20px; padding: 32px; display: flex; flex-wrap: wrap; gap: 28px; position: relative; overflow: hidden">
 <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 14px">
 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8FA8FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path><path d="M8 11h6M11 8v6"></path></svg>
 <h3 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 26px">Diagnóstico de empresas</h3>
@@ -200,7 +202,7 @@ body.noscroll{overflow:hidden}
 <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -1px">Conocé tu negocio como nunca lo viste.</h2>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A5060">Cualquiera puede hacer el cuestionario. Si querés la devolución completa, la recibís en una reunión cara a cara.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px">
 <div class="reveal lift" style="background: #FFFFFF; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 40px; color: #7C3AED">01</span>
 <h3 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 22px">Completás el cuestionario</h3>
@@ -296,7 +298,7 @@ body.noscroll{overflow:hidden}
 <span style="color: #7C3AED; font-size: 13px; font-weight: 600; letter-spacing: 1px">PROYECTOS</span>
 <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -1px">Trabajos reales, en la Comarca.</h2>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px">
 <article class="reveal lift" style="background: #FFFFFF; border: 1px solid #E3E5EA; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column">
 <div style="background: #121826; height: 220px; position: relative; display: flex; align-items: center; justify-content: center; gap: 28px; overflow: hidden">
 <div class="floaty" style="width: 110px; height: 110px; background: #FFFFFF; border-radius: 14px; padding: 12px; box-sizing: border-box; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px" aria-hidden="true"><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#7C3AED;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#7C3AED;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span><span></span><span style="background:#121826;border-radius:2px"></span><span style="background:#121826;border-radius:2px"></span></div>
@@ -335,7 +337,7 @@ body.noscroll{overflow:hidden}
 </section>
 <section id="calculadora" style="padding: 104px 24px; background: #FFFFFF">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<div class="reveal" style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div class="reveal" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
 <span style="color: #7C3AED; font-size: 13px; font-weight: 600; letter-spacing: 1px">CALCULADORA</span>
 <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -1px">¿Cuánto tiempo recuperarías?</h2>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #4A5060">Movés las barras según tu negocio y te mostramos una estimación.</p>
@@ -348,7 +350,7 @@ body.noscroll{overflow:hidden}
 <input id="calc-minutos" type="range" min="1" max="20" step="1" value="5">
 </div>
 </div>
-<div class="reveal" style="flex: 1 1 380px; background: #121826; border-radius: 24px; padding: 40px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden">
+<div class="reveal" style="flex: 1 1 300px; min-width: 0; background: #121826; border-radius: 24px; padding: 40px; display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden">
 <div class="grid-bg"></div>
 <span style="position: relative; color: #B4B9C4; font-size: 15px">Si automatizamos la mitad, recuperás por mes:</span>
 <span style="position: relative; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(64px, 9vw, 104px); line-height: 1; letter-spacing: -3px; color: #FFFFFF"><span id="v-horas">43</span><span style="font-size: 0.4em; color: #A78BFA; letter-spacing: 0"> horas</span></span>
@@ -364,7 +366,7 @@ body.noscroll{overflow:hidden}
 <h2 style="margin: 0; font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(36px, 5vw, 60px); line-height: 1.02; letter-spacing: -1.5px; color: #FFFFFF">¿Llevamos tu negocio<br>al siguiente nivel<span style="color: #A78BFA">?</span></h2>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #B4B9C4">Escribinos y coordinamos el diagnóstico. Te respondemos rápido.</p>
 </div>
-<div class="reveal" style="flex: 1 1 340px; display: flex; flex-direction: column; gap: 14px">
+<div class="reveal" style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start">
 <a href="https://wa.me/5491173685640" aria-label="Escribinos por WhatsApp" class="lift" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #F3F5F9; font-size: 14px; font-weight: 600"><span style="width: 84px; height: 84px; border-radius: 9999px; background: #7C3AED; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 32px rgba(124,58,237,0.5)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path><path d="M9.5 8.5c0 3 3 6 6 6l1-1.3-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"></path></svg></span>WhatsApp</a>
 <a href="https://instagram.com/linaia.estudio" aria-label="Seguinos en Instagram" class="lift" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #F3F5F9; font-size: 14px; font-weight: 600"><span style="width: 84px; height: 84px; border-radius: 9999px; background: #1C2436; border: 1.5px solid #8FA8FF; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2.5l1.5-2h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>Instagram</a>
